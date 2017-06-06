@@ -71,11 +71,6 @@ passport.use(new SteamStrategy({
   }
 ));
 
-
-app.get('/', (req, res)=>{
-  res.sendFile(path.join(__dirname + '/dist/app/index.html'))
-})
-
 app.get('/auth/steam',
   passport.authenticate('steam'),
   function(req, res) {

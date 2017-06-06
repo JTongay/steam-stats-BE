@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const loginRoutes = require('./server/routes/login.routes')
 let loggedInSteamUser = null
 require('dotenv').config();
+const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/testaroo";
 
 //mongo connection
 
@@ -16,10 +17,10 @@ require('dotenv').config();
 mongoose.Promise = global.Promise;
 
 //Connect to MongoDB
-mongoose.connect("mongodb://localhost/testaroo");
+mongoose.connect(mongoURI);
 
 mongoose.connection.once('open', function(){
-    console.log('Connection has been made, now make fireworks');
+    console.log('Connection has been made to :', mongoURI);
   }).on('error', function(err) {
     console.log('Connection error:', err);
   })

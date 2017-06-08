@@ -40,14 +40,18 @@ router.post('/login', (req, res, next)=>{
       console.log(err, "error")
     } else {
       bcrypt.compare(reqPassword, user.password, (err, pass)=>{
+        console.log(user, "user");
+        console.log(pass, "password matching");
         if(pass){
           let token = jwt.sign({id: user._id.toString()}, process.env.SECRET, {expiresIn: '2h'})
+          console.log(token, "token");
           res.json({
             token: token,
             steamID: "",
             id: user._id.toString()
           })
         } else {
+          console.log(err, "wrong password");
           res.status(422).json({
             status: "password incorrect"
           })

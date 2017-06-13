@@ -47,7 +47,7 @@ router.post('/login', (req, res, next)=>{
           console.log(token, "token");
           res.json({
             token: token,
-            steamID: "",
+            steamID: user.steamID,
             id: user._id.toString()
           })
         } else {
